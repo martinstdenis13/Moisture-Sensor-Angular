@@ -1,0 +1,11 @@
+<app-select-days (newItemEvent)="setChartCount($event)"></app-select-days>
+<h3>Weather Chart for last {{ chartDaysCount }} days</h3>
+<google-chart #chart
+   [title]="chartData.title"
+   [type]="chartData.type"
+   [data]="testDataForChart"
+   [columns]="chartData.columnNames"
+   [options]="chartData.options"
+   [width]="chartData.width"
+   [height]="chartData.height">
+</google-chart>

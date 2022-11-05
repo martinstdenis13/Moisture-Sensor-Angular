@@ -1,0 +1,17 @@
+<h3>Select number of days: </h3>
+    <mat-form-field appearance="outline">
+        <mat-label>Select</mat-label>
+        <mat-select (valueChange)="getLimitTemps($event)">
+            <mat-option [value]=0>Reset</mat-option>
+            <mat-option [value]=3>3 Days</mat-option>
+            <mat-option [value]=10>10 Days</mat-option>
+            <mat-option [value]=30>30 Days</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+<h3>Temps for {{ dateValue }} days: </h3>
+<div> 
+    <li *ngFor="let temp of limitData">
+        {{ temp.fields.weather_api_date + " Avg Temp: " + temp.fields.temp1}}
+    </li>
+</div>  

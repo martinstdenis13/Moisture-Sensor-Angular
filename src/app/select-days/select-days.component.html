@@ -1,0 +1,10 @@
+
+<h3>Select number of days for weather chart: </h3>
+    <mat-form-field appearance="outline">
+        <mat-label>Select</mat-label>
+        <mat-select (valueChange)="setDayCount($event)">
+            <mat-option [value]=3>3 Days</mat-option>
+            <mat-option [value]=10>10 Days</mat-option>
+            <mat-option [value]=30>30 Days</mat-option>
+        </mat-select>
+    </mat-form-field>
