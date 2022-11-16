@@ -15,6 +15,10 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { SelectDaysComponent } from './select-days/select-days.component';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { PireadingChartComponent } from './pireading-chart/pireading-chart.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 
 @NgModule({
@@ -24,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     WeatherChartComponent,
     SelectDaysComponent,
     ToolBarComponent,
+    PireadingChartComponent,
   
   ],
   imports: [
@@ -37,6 +42,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BrowserAnimationsModule,
     GoogleChartsModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatDividerModule,
+
   ],
   providers: [
     DataRetService,
