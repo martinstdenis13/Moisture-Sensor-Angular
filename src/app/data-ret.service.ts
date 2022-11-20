@@ -8,24 +8,25 @@ import { catchError, retry, map } from 'rxjs/operators';
 })
 export class DataRetService {
   daysVal: any;
-  private weatherApiURLDays = 'http://localhost:8000/weatherapi/weatherlimit/';
-  private piReadURLDays = 'http://localhost:8000/pireadingapi/pireadinglimit/';
+  private rooturl = 'http://localhost:8000'
+  private weatherApiURLDays = '/weatherapi/weatherlimit/';
+  private piReadURLDays = '/pireadingapi/pireadinglimit/';
 
   constructor(private http: HttpClient) { }
 
   getWeatherData(daysVal: any){
-    const finUrl = this.weatherApiURLDays + daysVal + "/";
+    const finUrl = this.rooturl + this.weatherApiURLDays + daysVal + "/";
         //console.log(finUrl);
         return this.http.get(finUrl);
   }
 
   getPiReadData(pidaysVal: any){
-    const finpiurl = this.piReadURLDays + pidaysVal +"/";
+    const finpiurl = this.rooturl + this.piReadURLDays + pidaysVal +"/";
     return this.http.get(finpiurl);
   }
 
   getInstaRead(){
-    const instaReadurl = 'http://localhost:8000/pireadingapi/instareadpi/';
+    const instaReadurl = this.rooturl + '/pireadingapi/instareadpi/';
     return this.http.get(instaReadurl);
   }
 }
