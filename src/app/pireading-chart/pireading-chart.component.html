@@ -1,5 +1,6 @@
 <mat-divider></mat-divider>
 <h3>Pi Moisture Chart for last {{ piChartDaysCount }} days</h3>
+<app-select-days (newItemEvent)="setChartCount($event)"></app-select-days>
 <google-chart #chart
    [title]="chartData.title"
    [type]="chartData.type"
@@ -11,3 +12,4 @@
 </google-chart>
 <button mat-stroked-button color="primary" (click)="instaPiRead()">Insta_Read!</button>
 <h3>Insta-Read: {{ piInstaReadResult }}</h3>
+<mat-divider></mat-divider>

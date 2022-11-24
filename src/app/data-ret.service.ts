@@ -8,7 +8,7 @@ import { catchError, retry, map } from 'rxjs/operators';
 })
 export class DataRetService {
   daysVal: any;
-  private rooturl = 'http://localhost:8000'
+  private rooturl = 'http://localhost:8000/api'
   private weatherApiURLDays = '/weatherapi/weatherlimit/';
   private piReadURLDays = '/pireadingapi/pireadinglimit/';
 

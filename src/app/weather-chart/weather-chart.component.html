@@ -1,5 +1,6 @@
-<app-select-days (newItemEvent)="setChartCount($event)"></app-select-days>
+<mat-divider></mat-divider>
 <h3>Weather Chart for last {{ chartDaysCount }} days</h3>
+<app-select-days (newItemEvent)="setChartCount($event)"></app-select-days>
 <google-chart #chart
    [title]="chartData.title"
    [type]="chartData.type"
@@ -9,3 +10,4 @@
    [width]="chartData.width"
    [height]="chartData.height">
 </google-chart>
+<mat-divider></mat-divider>

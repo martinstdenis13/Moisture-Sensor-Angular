@@ -30,7 +30,6 @@ export class WeatherChartComponent implements OnInit {
     this.weatherChartData = this.getChartData(newItem);
   }
   testDaysVal: any = 0;
-  
 
   getDayVal(dayValue: number){
     this.chartDaysCount = dayValue;

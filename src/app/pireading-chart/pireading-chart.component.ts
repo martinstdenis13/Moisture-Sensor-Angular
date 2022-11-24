@@ -20,6 +20,12 @@ interface piReadingJSON{
   styleUrls: ['./pireading-chart.component.sass']
 })
 export class PireadingChartComponent implements OnInit {
+
+  setChartCount(newItem: string){
+    this.piChartDaysCount = Number(newItem);
+    this.getPiData(this.piChartDaysCount);
+  }
+
   //count for days of pi readings
   piChartDaysCount: any;
   //insta-read variable
@@ -66,7 +72,7 @@ export class PireadingChartComponent implements OnInit {
     .subscribe( (data) => {
       this.piJSONData = data;
       this.piDataForChart = this.popPiData(this.piJSONData);
-      console.log(this.piDataForChart);
+      //console.log(this.piDataForChart);
     })
       return this.piDataForChart;
   }
@@ -83,7 +89,7 @@ export class PireadingChartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.piChartDaysCount = 10;
+    this.getPiData(10);
     this.instaPiRead();
   }
 
