@@ -82,9 +82,10 @@ export class WeatherChartComponent implements OnInit {
     let outputArray = []
     for (let i = 0; i<inputArray.length; i++){
       outputArray.push([String(inputArray[i].fields.weather_api_date), Number(inputArray[i].fields.temp1),
-      Number(inputArray[i].fields.temp_min),Number(inputArray[i].fields.temp_max)])
+      Number(inputArray[i].fields.temp_min),Number(inputArray[i].fields.temp_max)])  
     }
-    return outputArray
+    //reverse array so chart is left to right   
+    return outputArray.reverse();
   }
 
   ngOnInit(): void {   

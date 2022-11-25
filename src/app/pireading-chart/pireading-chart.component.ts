@@ -63,7 +63,8 @@ export class PireadingChartComponent implements OnInit {
     for (let i = 0; i<inputPiArray.length; i++){
       outputPiArray.push([String(inputPiArray[i].fields.pi_reading_date), Number(inputPiArray[i].fields.pi_reading_val)]);
     }
-    return outputPiArray;
+    //reverse output array so chart data is left to right
+    return outputPiArray.reverse();
   }
 
   public getPiData(piChartDaysCount: any){
