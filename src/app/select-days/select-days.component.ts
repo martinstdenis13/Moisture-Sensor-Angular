@@ -11,6 +11,8 @@ import { DataRetService } from '../data-ret.service';
 export class SelectDaysComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<string>();
+  //declaring 'all' property for mat-option to select all results
+  all = "all";
 
   setDayCount(value: string) {
     this.newItemEvent.emit(value);

@@ -64,18 +64,27 @@ export class PireadingChartComponent implements OnInit {
       outputPiArray.push([String(inputPiArray[i].fields.pi_reading_date), Number(inputPiArray[i].fields.pi_reading_val)]);
     }
     //reverse output array so chart data is left to right
-    return outputPiArray.reverse();
+    return outputPiArray;
   }
 
   public getPiData(piChartDaysCount: any){
-    //get JSON data from API
+    //get JSON data from API for selected number from select-days component
     this.service.getPiReadData(piChartDaysCount)
     .subscribe( (data) => {
       this.piJSONData = data;
       this.piDataForChart = this.popPiData(this.piJSONData);
-      //console.log(this.piDataForChart);
     })
-      return this.piDataForChart;
+      return this.piDataForChart.reverse();
+  }
+
+  public getPiDataAll(){
+    this.service.getAllPiData()
+    .subscribe( (data) => {
+      this.piJSONData = data;
+      this.piDataForChart = this.popPiData(this.piJSONData);
+    })
+    //have to reverse this since API for all readings is in reverse order...
+    return this.piDataForChart;
   }
 
   public instaPiRead(){

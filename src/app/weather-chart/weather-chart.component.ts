@@ -22,12 +22,18 @@ interface weatherapiJSON {
   styleUrls: ['./weather-chart.component.sass']
 })
 export class WeatherChartComponent implements OnInit {
-  //get day count from mat-option in select-days CHILD
 
+  //get day count from mat-option in select-days CHILD
   setChartCount(newItem: string) {
+    if (newItem == "all"){
+      this.weatherChartData = this.getAllChartData();
+      //console.log("getting all");
+      this.testDaysVal = "all";
+    }else{
     this.testDaysVal = newItem;
     //console.log("Parent: "+ newItem);
     this.weatherChartData = this.getChartData(newItem);
+    }
   }
   testDaysVal: any = 0;
 
@@ -40,11 +46,10 @@ export class WeatherChartComponent implements OnInit {
   weatherJSONData: any = [];
   //create empty array for weather data extracted from JSON
   weatherChartData: any = [];
-  testDataForChart: any = [];
   chartData = {
     title: '',
     type: ChartType.LineChart,
-    data: this.testDataForChart,
+    data: this.weatherChartData,
     columnNames: ["date","avg","min","max"],
     options: {   
       hAxis: {
@@ -64,28 +69,38 @@ export class WeatherChartComponent implements OnInit {
     
   }
   
-
+  //function to get chart data from api for number selected by select-days CHILD component
   public getChartData(chartDays: any){
     this.service.getWeatherData(chartDays)
     .subscribe( (data) => {
       this.weatherJSONData = data;
-      this.weatherChartData = this.popChartData(this.weatherJSONData)
-      this.testDataForChart = this.popChartData(this.weatherJSONData)
+      this.weatherChartData = this.popChartData(this.weatherJSONData);
       this.chartDaysCount = chartDays;
-      //console.log("Test Return: "+ this.weatherChartData)
+      //reverse data so chart is left to right
+      return this.weatherChartData.reverse();
+    })
+  }
+
+  public getAllChartData(){
+    this.service.getAllWeatherData()
+    .subscribe( (data) => {
+      this.weatherJSONData = data;
+      this.weatherChartData = this.popChartData(this.weatherJSONData);
+      this.chartDaysCount = "All";
+      //have to reverse this since API for all is in opposite order... 
       return this.weatherChartData;
     })
   }
 
   //function to populate data from weatherAPI JSON into array for chart
+  //may need to speed this up for the 'All' selection
   public popChartData(inputArray: [weatherapiJSON]){
     let outputArray = []
     for (let i = 0; i<inputArray.length; i++){
       outputArray.push([String(inputArray[i].fields.weather_api_date), Number(inputArray[i].fields.temp1),
       Number(inputArray[i].fields.temp_min),Number(inputArray[i].fields.temp_max)])  
-    }
-    //reverse array so chart is left to right   
-    return outputArray.reverse();
+    }  
+    return outputArray;
   }
 
   ngOnInit(): void {   
