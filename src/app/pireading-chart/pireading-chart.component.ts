@@ -22,8 +22,13 @@ interface piReadingJSON{
 export class PireadingChartComponent implements OnInit {
 
   setChartCount(newItem: string){
+    if (newItem == "all"){
+      this.piChartDaysCount = "All";
+      this.getPiDataAll();
+    }else{
     this.piChartDaysCount = Number(newItem);
     this.getPiData(this.piChartDaysCount);
+    }
   }
 
   //count for days of pi readings
@@ -74,6 +79,7 @@ export class PireadingChartComponent implements OnInit {
       this.piJSONData = data;
       this.piDataForChart = this.popPiData(this.piJSONData);
     })
+      //have to reverse this since API for all readings is in reverse order...
       return this.piDataForChart.reverse();
   }
 
@@ -83,7 +89,6 @@ export class PireadingChartComponent implements OnInit {
       this.piJSONData = data;
       this.piDataForChart = this.popPiData(this.piJSONData);
     })
-    //have to reverse this since API for all readings is in reverse order...
     return this.piDataForChart;
   }
 
