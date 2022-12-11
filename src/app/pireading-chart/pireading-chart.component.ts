@@ -69,7 +69,7 @@ export class PireadingChartComponent implements OnInit {
       outputPiArray.push([String(inputPiArray[i].fields.pi_reading_date), Number(inputPiArray[i].fields.pi_reading_val)]);
     }
     //reverse output array so chart data is left to right
-    return outputPiArray;
+    return outputPiArray.reverse();
   }
 
   public getPiData(piChartDaysCount: any){
@@ -80,7 +80,7 @@ export class PireadingChartComponent implements OnInit {
       this.piDataForChart = this.popPiData(this.piJSONData);
     })
       //have to reverse this since API for all readings is in reverse order...
-      return this.piDataForChart.reverse();
+      return this.piDataForChart;
   }
 
   public getPiDataAll(){
